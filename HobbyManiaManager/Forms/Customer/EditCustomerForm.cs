@@ -5,31 +5,26 @@ using System.Windows.Forms;
 using HobbyManiaManager.Models;
 using HobbyManiaManager.Repositories;
 using HobbyManiaManager.ViewModels;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace HobbyManiaManager.Forms
 {
     public partial class EditCustomerForm : Form
     {
         private static string _defaultAvatarUrlTemplate = "https://ui-avatars.com/api/?name={0}&size=150";
-        //Es la plantilla para construir una URL que se usará para generar una imagen predeterminada de perfil (Avatar) del cliente.
 
         private readonly CustomersRepository _customersRepository;
         private readonly MoviesRepository _moviesRepository;
         private readonly RentalsRepository _rentalsRepository;
-        //Repositorios (_customersRepository, _moviesRepository, _rentalsRepository): Son objetos que se
-        //usan para obtener y guardar datos relacionados con clientes, películas y alquileres.
-       
-        private readonly Form _parent; //Es una referencia al formulario principal desde el cual se abrió este formulario de edición.
+        private readonly Form _parent;
 
-        private Customer _customer; //Es el cliente que estamos editando. 
+        private Customer _customer;
         private string _loadedAvatarUrl;
 
         public EditCustomerForm(Form parent, Customer customer = null)
-        { //_customer: Se recibe como parámetro un cliente, que puede ser null si estamos creando uno nuevo.
+        {
             InitializeComponent();
             _customer = customer;
-            textBoxId.Enabled = false; // Se deshabilita el campo textBoxId para que no se pueda cambiar el ID del cliente
+            textBoxId.Enabled = false;
             _customersRepository = CustomersRepository.Instance;
             _rentalsRepository = RentalsRepository.Instance;
             _moviesRepository = MoviesRepository.Instance;
@@ -41,10 +36,7 @@ namespace HobbyManiaManager.Forms
             if (_customer == null)
             {
                 CreateCustomerLoad();
-                buttonRentalHistory.Enabled = false;
-                //Acá se carga la información si estamos editando un cliente (si existe _customer) o si estamos creando uno nuevo (si no existe _customer).
-                //Si estamos creando un nuevo cliente, el botón de alquiler se deshabilita(ya que no tiene historial).
-
+                buttonRentalHistory.Enabled = false; //Disable the rent button when creating a user
             }
             else
             {
@@ -56,12 +48,8 @@ namespace HobbyManiaManager.Forms
 
         private void UpdateCustomerLoad()
         {
-            //Si estamos editando un cliente, este método se encarga de cargar
-            //los datos del cliente en los campos de texto y mostrar su avatar en la interfaz.
-            buttonUpdateCreate.Text = "Update"; //Cambia el texto del botón
-            //buttonUpdateCreate a "Update" (esto indica que el formulario está en modo de actualización, no de creación).
-
-            textBoxId.Text = _customer.Id.ToString(); //Muestra el id del cliente en un campo de texto.
+            buttonUpdateCreate.Text = "Update";
+            textBoxId.Text = _customer.Id.ToString();
             textBoxName.Text = _customer.Name;
             textBoxEmail.Text = _customer.Email;
             textBoxPhone.Text = _customer.PhoneNumber;
@@ -69,14 +57,12 @@ namespace HobbyManiaManager.Forms
             pictureBoxAvatar.Load(_customer.Avatar);
             textBoxAvatarUrl.Text = _customer.Avatar;
             Text = $"Customer: {_customer.Name}({_customer.Id})";
-            //También carga el historial de alquileres del cliente en un DataGridView.
+
             LoadRentalsDataGrid();
         }
 
         private void LoadRentalsDataGrid()
         {
-            //Carga los alquileres activos del cliente en una tabla (DataGridView).
-            //Muestra los detalles de las películas alquiladas por ese cliente.
             this.dataGridViewActiveRentals.DataSource = _rentalsRepository.GetCustomerRentals(_customer.Id)
                 .Select(c => BuildRentalViewModel(c))
                 .ToList();
@@ -99,9 +85,6 @@ namespace HobbyManiaManager.Forms
 
         private void CreateCustomerLoad()
         {
-            //Si estamos creando un nuevo cliente, este método configura los valores
-            //predeterminados: establece que el ID es "0", oculta el campo de ID, y
-            //carga un avatar predeterminado para el cliente.
             textBoxId.Text = "0";
             textBoxId.Visible = false;
             labelId.Visible = false;
@@ -116,14 +99,12 @@ namespace HobbyManiaManager.Forms
         private void buttonUpdateCreate_Click(object sender, EventArgs e)
         {
             if (_customer == null)
-            { //Cuando el usuario presiona este botón, el formulario actúa de manera
-              //diferente dependiendo de si estamos editando un cliente o creando uno nuevo.
+            {
                 CreateCustomer();
                 MessageBox.Show("The client has been created successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-            {   //Si estamos creando un cliente, lo guarda en el repositorio de clientes. Si estamos editando,
-                //guarda los cambios en el cliente existente.
+            {
                 UpdateCustomer();
                 MessageBox.Show("The client has been updated successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

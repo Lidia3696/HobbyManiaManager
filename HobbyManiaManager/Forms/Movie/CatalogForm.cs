@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using HobbyManiaManager.Models;
 using HobbyManiaManager.ViewModels;
 
 namespace HobbyManiaManager
@@ -14,11 +15,12 @@ namespace HobbyManiaManager
         {
             InitializeComponent();
             _moviesRepository = MoviesRepository.Instance;
+
         }
 
         private void CatalogForm_Load(object sender, EventArgs e)
         {
-            movieUserControl.Load(_moviesRepository.GetById(238));
+            movieUserControl.Load(_moviesRepository.GetAll().First());
 
             dataGridViewMoviesList.DataSource = _moviesRepository.GetAll()
                 .Select(m => new MovieDataGridViewModel(m))
@@ -35,7 +37,15 @@ namespace HobbyManiaManager
             dataGridViewMoviesList.Columns["Id"].Visible = false;
             dataGridViewMoviesList.Columns["VoteAverage"].HeaderText = "Votes Average";
             movieUserControl.Parent = this;
+
+
+
+
         }
+
+
+
+
 
         private void dataGridViewMoviesList_SelectionChanged(object sender, EventArgs e)
         {

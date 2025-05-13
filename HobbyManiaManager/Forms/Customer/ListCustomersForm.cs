@@ -45,15 +45,8 @@ namespace HobbyManiaManager.Forms
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxId.Text)) return;
-            //Verifica si el texto dentro del textBoxId está vacío o solo contiene espacios en blanco.
-            //Si es así, la función termina (con return) y no hace nada más. Esto evita que el código que sigue
-            //se ejecute si el usuario no ha ingresado un valor válido.
+            if (string.IsNullOrWhiteSpace(textBoxId.Text)) return; //if it is empty or has spaces, do nothing
             dataGridViewCustomersList.DataSource = _repository.GetAll().Where(c => c.Id.ToString() == textBoxId.Text).ToList();
-            //Filtra los clientes en el repositorio _repository.GetAll()
-            //para mostrar solo aquellos cuyo Id coincida con el valor
-            //ingresado en el cuadro de texto textBoxId, y luego asigna el resultado
-            //al DataSource del DataGridView, actualizando así la tabla con los resultados filtrados.
             dataGridViewCustomersList.Refresh();
         }
 

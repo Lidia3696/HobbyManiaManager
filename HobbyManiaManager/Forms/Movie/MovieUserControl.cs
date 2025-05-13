@@ -8,7 +8,6 @@ using HobbyManiaManager.Models;
 
 namespace HobbyManiaManager
 {
-  
     public partial class MovieUserControl : UserControl
     {
         private CultureInfo cultureInfo;
@@ -31,12 +30,6 @@ namespace HobbyManiaManager
             this.labelTitle.Text = $"{Movie.Title}({Movie.ReleaseDate.Year})";
             this.labelTitle.AutoSize = true;
 
-            this.labelGenre.Text = $"Genres: {Movie.GenresAsString}"; //Convierte la lista de
-            //géneros en una cadena de texto, para que podamos mostrarlas en la Interfaz. 
-            this.labelGenre.AutoSize = true;
-            this.labelGenre.Location = new Point(this.labelTitle.Location.X, this.labelTitle.Bottom + 5);
-            // He agregado está linea porque posiciona el labelGenre justo debajo del labelTitle, dejando 5 píxeles de espacio.
-
             this.labelOriginalTitle.Text = Movie.OriginalTitle;
             this.labelOriginalTitle.AutoSize = true;
 
@@ -51,32 +44,68 @@ namespace HobbyManiaManager
             this.circularProgressBarVotes.Value = (int)Math.Round(Movie.VoteAverage * 10);
             this.circularProgressBarVotes.Text = $"{Math.Round(Movie.VoteAverage * 10)}%";
 
-            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelGenre.Bottom + 10);
+            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelTitle.Bottom + 10);
             this.circularProgressBarVotes.Location = new Point(this.circularProgressBarVotes.Location.X, this.labelOriginalTitle.Bottom + 10);
             this.labelOverview.Location = new Point(this.circularProgressBarVotes.Right + 10, this.labelOriginalTitle.Bottom + 10);
             this.labelVotesCount.Location = new Point(this.labelVotesCount.Location.X, this.circularProgressBarVotes.Bottom + 5);
+
+
+
+            this.labelGenres.Text = movie.GenresAsSting;
+            this.labelGenres.AutoSize = true;
+
+            // Position it just below the title, whether it wraps or not
+
+            this.labelGenres.Location = new Point(this.labelTitle.Location.X, this.labelTitle.Bottom + 5);
+            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelGenres.Bottom + 5);
+
+
+
 
             CheckAvailability(movie);
             this.Refresh();
         }
 
+
         private void CheckAvailability(Movie movie)
         {
-            bool available = service.IsAvailable(movie);
-            if (available)
             {
-                this.pictureBoxAvailable.BackColor = Color.Green;
-                this.labelAvailable.Text = "Ready to rent";
-                this.buttonStartEndRent.Text = "Start Rent";
+                //Get the active rental for this movie
 
-            }
-            else
-            {
-                this.buttonStartEndRent.Text = "End Rent";
-                this.pictureBoxAvailable.BackColor = Color.Red;
-                this.labelAvailable.Text = "Rental not available";
+                var rental = service.GetMovieRental(movie.Id);
+
+                if (rental == null)
+                {
+                    // No one has it
+                    pictureBoxAvailable.BackColor = Color.Green;
+                    labelAvailable.Text = "Ready to rent";
+                    buttonStartEndRent.Text = "Start Rent";
+                }
+                else
+                {
+                    // Someone rented it — lookup the customer
+                    var customer = service._customersRepository.GetById(rental.CustomerId);
+             
+                    buttonStartEndRent.Text = "End Rent";
+                    pictureBoxAvailable.BackColor = Color.Red;
+
+
+                    if (customer != null)
+                    {
+                        labelAvailable.Text = $"Rental not available: Rented by {customer.Name} ({customer.Id})";
+                    }
+                    else
+                    {
+                        labelAvailable.Text = "Rental not available (Rented by: unknown)";
+                    }
+                }
             }
         }
+
+        
+
+
+
 
         public override void Refresh()
         {
@@ -90,14 +119,28 @@ namespace HobbyManiaManager
             rentalForm.ShowDialog();
         }
 
-        private void MovieUserControl_Load(object sender, EventArgs e)
+        private void btnImbd_Click(object sender, EventArgs e)
         {
 
-        }
+            // var imbdFrom = new ImdbForm(Movie.ImdbId);
+            //imbdFrom.ShowDialog();
 
-        private void MovieUserControl_Load_1(object sender, EventArgs e)
-        {
 
+
+            // Check if the ImdbId is not null or empty
+            if (!string.IsNullOrEmpty(Movie.ImdbId))
+            {
+                // Construct the IMDb URL using the ImdbId
+                string imdbUrl = $"https://www.imdb.com/es-es/title/{Movie.ImdbId}";
+
+                // Open the IMDb page in the ImdbForm
+                var imdbForm = new ImdbForm(imdbUrl);
+                imdbForm.ShowDialog();
+            }
+        
+
+            
         }
     }
-}
+    }
+

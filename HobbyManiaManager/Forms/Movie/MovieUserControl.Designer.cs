@@ -38,7 +38,8 @@
             this.buttonStartEndRent = new System.Windows.Forms.Button();
             this.circularProgressBarVotes = new CircularProgressBar.CircularProgressBar();
             this.labelVotesCount = new System.Windows.Forms.Label();
-            this.labelGenre = new System.Windows.Forms.Label();
+            this.btnImbd = new System.Windows.Forms.Button();
+            this.labelGenres = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvailable)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +59,7 @@
             // pictureBoxPoster
             // 
             this.pictureBoxPoster.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxPoster.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxPoster.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxPoster.Name = "pictureBoxPoster";
             this.pictureBoxPoster.Size = new System.Drawing.Size(267, 369);
             this.pictureBoxPoster.TabIndex = 1;
@@ -89,7 +90,7 @@
             // labelOverview
             // 
             this.labelOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOverview.Location = new System.Drawing.Point(404, 134);
+            this.labelOverview.Location = new System.Drawing.Point(404, 102);
             this.labelOverview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOverview.MaximumSize = new System.Drawing.Size(800, 0);
             this.labelOverview.MinimumSize = new System.Drawing.Size(800, 22);
@@ -112,7 +113,7 @@
             // pictureBoxAvailable
             // 
             this.pictureBoxAvailable.Location = new System.Drawing.Point(283, 351);
-            this.pictureBoxAvailable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxAvailable.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxAvailable.Name = "pictureBoxAvailable";
             this.pictureBoxAvailable.Size = new System.Drawing.Size(16, 15);
             this.pictureBoxAvailable.TabIndex = 7;
@@ -122,7 +123,7 @@
             // 
             this.buttonStartEndRent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStartEndRent.Location = new System.Drawing.Point(977, 326);
-            this.buttonStartEndRent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonStartEndRent.Margin = new System.Windows.Forms.Padding(4);
             this.buttonStartEndRent.Name = "buttonStartEndRent";
             this.buttonStartEndRent.Size = new System.Drawing.Size(228, 47);
             this.buttonStartEndRent.TabIndex = 8;
@@ -140,8 +141,8 @@
             this.circularProgressBarVotes.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBarVotes.InnerMargin = 2;
             this.circularProgressBarVotes.InnerWidth = -1;
-            this.circularProgressBarVotes.Location = new System.Drawing.Point(289, 120);
-            this.circularProgressBarVotes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.circularProgressBarVotes.Location = new System.Drawing.Point(289, 102);
+            this.circularProgressBarVotes.Margin = new System.Windows.Forms.Padding(4);
             this.circularProgressBarVotes.MarqueeAnimationSpeed = 2000;
             this.circularProgressBarVotes.Name = "circularProgressBarVotes";
             this.circularProgressBarVotes.OuterColor = System.Drawing.Color.Gray;
@@ -166,7 +167,7 @@
             // labelVotesCount
             // 
             this.labelVotesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVotesCount.Location = new System.Drawing.Point(284, 222);
+            this.labelVotesCount.Location = new System.Drawing.Point(285, 204);
             this.labelVotesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVotesCount.Name = "labelVotesCount";
             this.labelVotesCount.Size = new System.Drawing.Size(107, 28);
@@ -174,21 +175,33 @@
             this.labelVotesCount.Text = "Votes Count";
             this.labelVotesCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelGenre
+            // btnImbd
             // 
-            this.labelGenre.AutoSize = true;
-            this.labelGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.labelGenre.Location = new System.Drawing.Point(296, 66);
-            this.labelGenre.Name = "labelGenre";
-            this.labelGenre.Size = new System.Drawing.Size(59, 17);
-            this.labelGenre.TabIndex = 11;
-            this.labelGenre.Text = "Genres:";
+            this.btnImbd.BackColor = System.Drawing.Color.Gold;
+            this.btnImbd.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImbd.Location = new System.Drawing.Point(1072, 276);
+            this.btnImbd.Name = "btnImbd";
+            this.btnImbd.Size = new System.Drawing.Size(132, 43);
+            this.btnImbd.TabIndex = 11;
+            this.btnImbd.Text = "IMBD";
+            this.btnImbd.UseVisualStyleBackColor = false;
+            this.btnImbd.Click += new System.EventHandler(this.btnImbd_Click);
+            // 
+            // labelGenres
+            // 
+            this.labelGenres.AutoSize = true;
+            this.labelGenres.Location = new System.Drawing.Point(286, 66);
+            this.labelGenres.Name = "labelGenres";
+            this.labelGenres.Size = new System.Drawing.Size(44, 16);
+            this.labelGenres.TabIndex = 12;
+            this.labelGenres.Text = "Genre";
             // 
             // MovieUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelGenre);
+            this.Controls.Add(this.labelGenres);
+            this.Controls.Add(this.btnImbd);
             this.Controls.Add(this.labelVotesCount);
             this.Controls.Add(this.circularProgressBarVotes);
             this.Controls.Add(this.buttonStartEndRent);
@@ -199,7 +212,7 @@
             this.Controls.Add(this.labelOriginalTitle);
             this.Controls.Add(this.pictureBoxPoster);
             this.Controls.Add(this.labelTitle);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MovieUserControl";
             this.Size = new System.Drawing.Size(1209, 378);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).EndInit();
@@ -221,6 +234,7 @@
         private System.Windows.Forms.Button buttonStartEndRent;
         private CircularProgressBar.CircularProgressBar circularProgressBarVotes;
         private System.Windows.Forms.Label labelVotesCount;
-        private System.Windows.Forms.Label labelGenre;
+        private System.Windows.Forms.Button btnImbd;
+        private System.Windows.Forms.Label labelGenres;
     }
 }

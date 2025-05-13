@@ -5,6 +5,7 @@ namespace HobbyManiaManager.ViewModels
 {
     public class MovieDataGridViewModel
     {
+        private readonly RentalService _rentalService;
         public MovieDataGridViewModel(Movie m)
         {
             Id = m.Id;
@@ -12,6 +13,7 @@ namespace HobbyManiaManager.ViewModels
             OriginalTitle = m.OriginalTitle;
             ReleaseDate = m.ReleaseDate;
             VoteAverage = Math.Round(m.VoteAverage *10);
+         
         }
 
         public int Id { get; set; }
@@ -23,5 +25,7 @@ namespace HobbyManiaManager.ViewModels
         public DateTime ReleaseDate { get; set; }
 
         public double VoteAverage { get; set; }
+
+        public bool IsAvailable { get; set; }
     }
 }

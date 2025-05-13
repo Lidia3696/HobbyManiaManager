@@ -28,8 +28,8 @@ namespace HobbyManiaManager.Forms
             _rental = _rentalService.GetMovieRental(movie.Id);
             if (_rental != null) {
                 var c = _customersRepository.GetById(_rental.CustomerId);
-                if (c == null) { 
-                    // exception
+                if (c == null) {
+                    throw new InvalidOperationException($"No customer found with ID {_rental.CustomerId}.");
                 }
                 this._customer = c;
             }
@@ -93,9 +93,8 @@ namespace HobbyManiaManager.Forms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var c = int.TryParse(this.textBoxId.Text, out var id)
-                ? _customersRepository.GetById(id)
-                : null;
+            var c = int.TryParse(this.textBoxId.Text, out var id) ? TryGetCustomer(id) : null;
+
             if (c != null)
             {
                 this._customer = c;
@@ -104,6 +103,18 @@ namespace HobbyManiaManager.Forms
             else
             {
                 SelectCustomer();
+            }
+        }
+
+        private Customer TryGetCustomer(int id)
+        {
+            try
+            {
+                return _customersRepository.GetById(id);
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
@@ -133,7 +144,7 @@ namespace HobbyManiaManager.Forms
             }
             else {
                 // Ending an existing rental
-                _rentalService.FinishRental(_customer, _movie, this.textBoxRentalNotes.Text);
+                _rentalService.FinishRental(_customer, _movie, this.textBoxRentalNotes.Text, dateTimePickerEnd.Value);
                 MessageBox.Show($"Rent finished for movie: {_movie.Title}.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             this._parent?.Refresh();
