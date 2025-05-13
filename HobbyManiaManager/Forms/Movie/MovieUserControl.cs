@@ -50,7 +50,6 @@ namespace HobbyManiaManager
             this.labelVotesCount.Location = new Point(this.labelVotesCount.Location.X, this.circularProgressBarVotes.Bottom + 5);
 
 
-
             this.labelGenres.Text = movie.GenresAsSting;
             this.labelGenres.AutoSize = true;
 
@@ -59,10 +58,11 @@ namespace HobbyManiaManager
             this.labelGenres.Location = new Point(this.labelTitle.Location.X, this.labelTitle.Bottom + 5);
             this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelGenres.Bottom + 5);
 
-
-
-
             CheckAvailability(movie);
+
+            this.btnImdb.Enabled = !string.IsNullOrEmpty(Movie?.ImdbId);
+
+
             this.Refresh();
         }
 
@@ -102,10 +102,6 @@ namespace HobbyManiaManager
             }
         }
 
-        
-
-
-
 
         public override void Refresh()
         {
@@ -119,28 +115,16 @@ namespace HobbyManiaManager
             rentalForm.ShowDialog();
         }
 
-        private void btnImbd_Click(object sender, EventArgs e)
+        private void btnImdb_Click(object sender, EventArgs e)
         {
-
-            // var imbdFrom = new ImdbForm(Movie.ImdbId);
-            //imbdFrom.ShowDialog();
-
-
-
-            // Check if the ImdbId is not null or empty
             if (!string.IsNullOrEmpty(Movie.ImdbId))
             {
-                // Construct the IMDb URL using the ImdbId
                 string imdbUrl = $"https://www.imdb.com/es-es/title/{Movie.ImdbId}";
 
-                // Open the IMDb page in the ImdbForm
-                var imdbForm = new ImdbForm(imdbUrl);
+                var imdbForm = new ImdbForm(imdbUrl, Movie.Title);
                 imdbForm.ShowDialog();
             }
-        
-
-            
         }
     }
-    }
+}
 

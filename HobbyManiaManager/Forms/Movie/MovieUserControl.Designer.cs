@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieUserControl));
             this.labelTitle = new System.Windows.Forms.Label();
             this.pictureBoxPoster = new System.Windows.Forms.PictureBox();
             this.labelOriginalTitle = new System.Windows.Forms.Label();
@@ -38,8 +40,9 @@
             this.buttonStartEndRent = new System.Windows.Forms.Button();
             this.circularProgressBarVotes = new CircularProgressBar.CircularProgressBar();
             this.labelVotesCount = new System.Windows.Forms.Label();
-            this.btnImbd = new System.Windows.Forms.Button();
+            this.btnImdb = new System.Windows.Forms.Button();
             this.labelGenres = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvailable)).BeginInit();
             this.SuspendLayout();
@@ -175,17 +178,18 @@
             this.labelVotesCount.Text = "Votes Count";
             this.labelVotesCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnImbd
+            // btnImdb
             // 
-            this.btnImbd.BackColor = System.Drawing.Color.Gold;
-            this.btnImbd.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImbd.Location = new System.Drawing.Point(1072, 276);
-            this.btnImbd.Name = "btnImbd";
-            this.btnImbd.Size = new System.Drawing.Size(132, 43);
-            this.btnImbd.TabIndex = 11;
-            this.btnImbd.Text = "IMBD";
-            this.btnImbd.UseVisualStyleBackColor = false;
-            this.btnImbd.Click += new System.EventHandler(this.btnImbd_Click);
+            this.btnImdb.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnImdb.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImdb.ImageIndex = 0;
+            this.btnImdb.ImageList = this.imageList1;
+            this.btnImdb.Location = new System.Drawing.Point(1093, 267);
+            this.btnImdb.Name = "btnImdb";
+            this.btnImdb.Size = new System.Drawing.Size(111, 52);
+            this.btnImdb.TabIndex = 11;
+            this.btnImdb.UseVisualStyleBackColor = false;
+            this.btnImdb.Click += new System.EventHandler(this.btnImdb_Click);
             // 
             // labelGenres
             // 
@@ -196,12 +200,18 @@
             this.labelGenres.TabIndex = 12;
             this.labelGenres.Text = "Genre";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "imdb.PNG");
+            // 
             // MovieUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelGenres);
-            this.Controls.Add(this.btnImbd);
+            this.Controls.Add(this.btnImdb);
             this.Controls.Add(this.labelVotesCount);
             this.Controls.Add(this.circularProgressBarVotes);
             this.Controls.Add(this.buttonStartEndRent);
@@ -234,7 +244,8 @@
         private System.Windows.Forms.Button buttonStartEndRent;
         private CircularProgressBar.CircularProgressBar circularProgressBarVotes;
         private System.Windows.Forms.Label labelVotesCount;
-        private System.Windows.Forms.Button btnImbd;
+        private System.Windows.Forms.Button btnImdb;
         private System.Windows.Forms.Label labelGenres;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
