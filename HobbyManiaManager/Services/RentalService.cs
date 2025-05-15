@@ -45,6 +45,10 @@ namespace HobbyManiaManager
             _customersRepository.AddRentalToHistory(customer.Id, rental);
             _rentalsRepository.Remove(rental);
             Log();
+
+            //Open ticket form
+            var ticketForm = new TicketForm(customer, movie, RentalCopy);
+            ticketForm.ShowDialog();
         }
 
         private void Log()

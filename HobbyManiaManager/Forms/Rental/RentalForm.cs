@@ -11,7 +11,7 @@ namespace HobbyManiaManager.Forms
         private readonly RentalService _rentalService;
         private readonly Control _parent;
 
-        private Rental _rental;
+        private Models.Rental _rental;
         private Movie _movie;
         private Customer _customer;
 
