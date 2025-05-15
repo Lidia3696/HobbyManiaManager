@@ -39,6 +39,8 @@ namespace HobbyManiaManager
                 throw new Exception($"There is no active rental for movieId={movie.Id} from customerId={customer.Id}");
             }
 
+            Rental RentalCopy = rental;
+
             rental.EndDate = endDate;
             rental.Notes = notes;
 
