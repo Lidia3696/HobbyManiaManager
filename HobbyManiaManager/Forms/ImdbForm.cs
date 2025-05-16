@@ -13,33 +13,25 @@ namespace HobbyManiaManager.Forms
 {
     public partial class ImdbForm : Form
     {
-
-
-        // Constructor that receives the IMDb URL
-        public ImdbForm(string imdbUrl)
+        public ImdbForm(string imdbUrl, string movieTitle)
         {
             InitializeComponent();
-            LoadImdbPage(imdbUrl);  // Load the IMDb page
+            this.Text = $"IMDb: {movieTitle}";
+            LoadImdbPage(imdbUrl);
         }
 
-        // Method to initialize WebView2 and navigate to IMDb
         private void LoadImdbPage(string imdbUrl)
         {
-
-            // Ensure WebView2 is ready to navigate
             webView21.CoreWebView2InitializationCompleted += (s, e) =>
             {
                 if (webView21.CoreWebView2 != null)
                 {
-                    webView21.CoreWebView2.Navigate(imdbUrl);  // Navigate to the IMDb page
+                    webView21.CoreWebView2.Navigate(imdbUrl);
                 }
             };
 
-            // Initialize the WebView2 control
             webView21.EnsureCoreWebView2Async();
         }
-
-
 
         private void webView21_Click(object sender, EventArgs e)
         {
