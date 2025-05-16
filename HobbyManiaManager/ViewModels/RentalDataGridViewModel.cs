@@ -5,7 +5,7 @@ namespace HobbyManiaManager.ViewModels
 {
     public class RentalDataGridViewModel
     {
-
+            
         public RentalDataGridViewModel(Movie m, Rental r)
         {
             if (m.Id != r.MovieId) {

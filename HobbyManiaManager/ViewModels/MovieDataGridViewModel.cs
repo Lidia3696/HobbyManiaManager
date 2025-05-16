@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using HobbyManiaManager.Models;
 
 namespace HobbyManiaManager.ViewModels
@@ -13,7 +14,8 @@ namespace HobbyManiaManager.ViewModels
             OriginalTitle = m.OriginalTitle;
             ReleaseDate = m.ReleaseDate;
             VoteAverage = Math.Round(m.VoteAverage *10);
-         
+            IsAvailable = m.IsAvailable;
+
         }
 
         public int Id { get; set; }
@@ -26,6 +28,7 @@ namespace HobbyManiaManager.ViewModels
 
         public double VoteAverage { get; set; }
 
+        // the movies is available for rental if there is no active rental
         public bool IsAvailable { get; set; }
     }
 }

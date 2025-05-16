@@ -16,6 +16,8 @@ namespace HobbyManiaManager
         private readonly MoviesRepository _moviesRepository;
         private readonly CustomersRepository _customersRepository;
 
+        private readonly RentalService _rentalService = new RentalService();
+
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +34,9 @@ namespace HobbyManiaManager
             BuildTabs();
 
             labelMoviesCounter.Text = $"{_moviesRepository.Count} movies loaded.";
+
+
+            
         }
 
         private void BuildTabs()
@@ -78,7 +83,29 @@ namespace HobbyManiaManager
             {
                 MessageBox.Show($"An error occurred while loading movies: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+
+
+
+
+
+
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void CreateRandomCustomers()
         {
