@@ -38,14 +38,17 @@
             this.dataGridViewMoviesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMoviesList.Location = new System.Drawing.Point(14, 325);
             this.dataGridViewMoviesList.Name = "dataGridViewMoviesList";
+            this.dataGridViewMoviesList.RowHeadersWidth = 51;
             this.dataGridViewMoviesList.Size = new System.Drawing.Size(907, 268);
             this.dataGridViewMoviesList.TabIndex = 1;
+            this.dataGridViewMoviesList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMoviesList_CellContentClick);
             this.dataGridViewMoviesList.SelectionChanged += new System.EventHandler(this.dataGridViewMoviesList_SelectionChanged);
             // 
             // movieUserControl
             // 
             this.movieUserControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.movieUserControl.Location = new System.Drawing.Point(14, 12);
+            this.movieUserControl.Margin = new System.Windows.Forms.Padding(4);
             this.movieUserControl.Name = "movieUserControl";
             this.movieUserControl.Size = new System.Drawing.Size(907, 307);
             this.movieUserControl.TabIndex = 0;
@@ -68,5 +71,7 @@
 
         private MovieUserControl movieUserControl;
         private System.Windows.Forms.DataGridView dataGridViewMoviesList;
+
+
     }
 }

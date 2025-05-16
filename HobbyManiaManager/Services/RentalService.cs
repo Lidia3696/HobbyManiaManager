@@ -66,7 +66,7 @@ namespace HobbyManiaManager
         {
             return !_rentalsRepository.GetAll().Exists(r => r.MovieId == movie.Id);
         }
-
+          
 
 
         public Rental GetMovieRental(int id)

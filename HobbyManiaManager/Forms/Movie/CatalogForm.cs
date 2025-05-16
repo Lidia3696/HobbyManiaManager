@@ -22,6 +22,8 @@ namespace HobbyManiaManager
         {
             movieUserControl.Load(_moviesRepository.GetAll().First());
 
+            dataGridViewMoviesList.AutoGenerateColumns = true;
+
             dataGridViewMoviesList.DataSource = _moviesRepository.GetAll()
                 .Select(m => new MovieDataGridViewModel(m))
                 .ToList();
@@ -37,6 +39,21 @@ namespace HobbyManiaManager
             dataGridViewMoviesList.Columns["Id"].Visible = false;
             dataGridViewMoviesList.Columns["VoteAverage"].HeaderText = "Votes Average";
             movieUserControl.Parent = this;
+
+
+            if (!dataGridViewMoviesList.Columns.Contains("IsAvailable"))
+            {
+                DataGridViewCheckBoxColumn isAvailableColumn = new DataGridViewCheckBoxColumn();
+                isAvailableColumn.DataPropertyName = "IsAvailable";
+                isAvailableColumn.HeaderText = "Available";
+                isAvailableColumn.Name = "IsAvailable";
+                isAvailableColumn.ReadOnly = true;
+
+                dataGridViewMoviesList.Columns.Add(isAvailableColumn);
+            }
+           
+
+
 
 
 
@@ -57,6 +74,11 @@ namespace HobbyManiaManager
                 var selected = _moviesRepository.GetById(id);
                 movieUserControl.Load(selected);
             }
+        }
+
+        private void dataGridViewMoviesList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -38,6 +38,7 @@ namespace HobbyManiaManager
         {
             foreach (var movie in movies)
             {
+                movie.IsAvailable = true; // the movies are available for rental 
                 this.movies[movie.Id] = (Movie)movie.Clone();
             }
         }
