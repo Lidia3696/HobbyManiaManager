@@ -1,6 +1,10 @@
 ﻿using System;
 using HobbyManiaManager.Models;
 using HobbyManiaManager.Repositories;
+using HobbyManiaManager.Forms;
+using HobbyManiaManager.Forms.Rental;
+
+
 
 namespace HobbyManiaManager
 {

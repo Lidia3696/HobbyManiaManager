@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using HobbyManiaManager.Models;
 using HobbyManiaManager.Repositories;
 using HobbyManiaManager.ViewModels;
+using RentalModel = HobbyManiaManager.Models.Rental;
+
 
 namespace HobbyManiaManager.Forms
 {
@@ -220,7 +222,7 @@ namespace HobbyManiaManager.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridViewActiveRentals.Rows[e.RowIndex];
-                var r = (Rental)selectedRow.Cells["Rental"].Value;
+                var r = (RentalModel)selectedRow.Cells["Rental"].Value;
                 var m = _moviesRepository.GetById(r.MovieId);
                 var customerForm = new RentalForm(m, this);
                 customerForm.ShowDialog();
