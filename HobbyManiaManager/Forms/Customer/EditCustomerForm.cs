@@ -73,7 +73,7 @@ namespace HobbyManiaManager.Forms
             dataGridViewActiveRentals.Columns["EndDate"].Visible = false;
         }
 
-        private RentalDataGridViewModel BuildRentalViewModel(Rental r)
+        private RentalDataGridViewModel BuildRentalViewModel(Models.Rental r)
         {
             var m = _moviesRepository.GetById(r.MovieId);
             if (m == null)

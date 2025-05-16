@@ -39,12 +39,18 @@ namespace HobbyManiaManager
                 throw new Exception($"There is no active rental for movieId={movie.Id} from customerId={customer.Id}");
             }
 
+            Rental RentalCopy = rental;
+
             rental.EndDate = endDate;
             rental.Notes = notes;
 
             _customersRepository.AddRentalToHistory(customer.Id, rental);
             _rentalsRepository.Remove(rental);
             Log();
+
+            //Open ticket form
+            var ticketForm = new TicketForm(customer, movie, RentalCopy);
+            ticketForm.ShowDialog();
         }
 
         private void Log()
