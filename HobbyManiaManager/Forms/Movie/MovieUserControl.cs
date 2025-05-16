@@ -125,6 +125,12 @@ namespace HobbyManiaManager
                 imdbForm.ShowDialog();
             }
         }
+
+        private void btnDataApp_Click(object sender, EventArgs e)
+        {
+            var dataapp = new DataForm();
+            dataapp.ShowDialog();
+        }
     }
 }
 

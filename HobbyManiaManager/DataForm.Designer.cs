@@ -53,7 +53,6 @@
             this.Text = "DataForm";
             ((System.ComponentModel.ISupportInitialize)(this.DataAppWeb)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -41,8 +41,9 @@
             this.circularProgressBarVotes = new CircularProgressBar.CircularProgressBar();
             this.labelVotesCount = new System.Windows.Forms.Label();
             this.btnImdb = new System.Windows.Forms.Button();
-            this.labelGenres = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.labelGenres = new System.Windows.Forms.Label();
+            this.btnDataApp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvailable)).BeginInit();
             this.SuspendLayout();
@@ -191,6 +192,12 @@
             this.btnImdb.UseVisualStyleBackColor = false;
             this.btnImdb.Click += new System.EventHandler(this.btnImdb_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "imdb.PNG");
+            // 
             // labelGenres
             // 
             this.labelGenres.AutoSize = true;
@@ -200,16 +207,22 @@
             this.labelGenres.TabIndex = 12;
             this.labelGenres.Text = "Genre";
             // 
-            // imageList1
+            // btnDataApp
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "imdb.PNG");
+            this.btnDataApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnDataApp.Location = new System.Drawing.Point(640, 331);
+            this.btnDataApp.Name = "btnDataApp";
+            this.btnDataApp.Size = new System.Drawing.Size(330, 40);
+            this.btnDataApp.TabIndex = 13;
+            this.btnDataApp.Text = "Data Application";
+            this.btnDataApp.UseVisualStyleBackColor = true;
+            this.btnDataApp.Click += new System.EventHandler(this.btnDataApp_Click);
             // 
             // MovieUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDataApp);
             this.Controls.Add(this.labelGenres);
             this.Controls.Add(this.btnImdb);
             this.Controls.Add(this.labelVotesCount);
@@ -247,5 +260,6 @@
         private System.Windows.Forms.Button btnImdb;
         private System.Windows.Forms.Label labelGenres;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnDataApp;
     }
 }
