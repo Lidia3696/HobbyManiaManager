@@ -80,6 +80,7 @@ namespace HobbyManiaManager
                     pictureBoxAvailable.BackColor = Color.Green;
                     labelAvailable.Text = "Ready to rent";
                     buttonStartEndRent.Text = "Start Rent";
+                    lblRented.Text = "";
                 }
                 else
                 {
@@ -92,11 +93,11 @@ namespace HobbyManiaManager
 
                     if (customer != null)
                     {
-                        labelAvailable.Text = $"Rental not available: Rented by {customer.Name} ({customer.Id})";
+                        lblRented.Text = $"Rented by {customer.Name}";
                     }
                     else
                     {
-                        labelAvailable.Text = "Rental not available (Rented by: unknown)";
+                        lblRented.Text = "Rented by: unknown";
                     }
                 }
             }
